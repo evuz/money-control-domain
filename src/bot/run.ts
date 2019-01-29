@@ -6,6 +6,7 @@ import { StartFunctionBot } from './functions/StartFunctionBot';
 import { ExpenseFunctionBot, IncomeFunctionBot } from './functions/ActivityFunctionBot';
 import { GetActivitiesFunctionBot } from './functions/GetActivitiesFunctionBot';
 import { GetActivitiesGroupedFunctionBot } from './functions/GetActivitiesFunctionBot/GetActivitiesGroupedFunctionBot';
+import { RemoveFunctionBot } from './functions/RemoveFunctionBot';
 
 export function run({ token }: { token: string }) {
   const calendarKeyboardBot = new CalendarKeyboardBot({ regex: /\/date/ });
@@ -15,6 +16,7 @@ export function run({ token }: { token: string }) {
     new StartFunctionBot(),
     new ExpenseFunctionBot({ calendarKeyboardBot }),
     new IncomeFunctionBot({ calendarKeyboardBot }),
+    new RemoveFunctionBot(),
     new GetActivitiesFunctionBot(),
     new GetActivitiesGroupedFunctionBot(),
     calendarKeyboardBot,
