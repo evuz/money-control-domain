@@ -34,4 +34,8 @@ export class MongoActivityRepository implements ActivityRepository {
     });
     return { results, total };
   }
+
+  removeActivity({ id }: { id: string }): Promise<any> {
+    return this.activityRepository.delete(id);
+  }
 }

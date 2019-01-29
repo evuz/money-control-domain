@@ -4,6 +4,7 @@ import { ActivityServiceFactory } from '../Services/factory';
 import { GetActivitiesByUserIdUseCase } from './GetActivitiesByUserIdUseCase';
 import { GetActivitiesByMonthUseCase } from './GetActivitiesByMonthUseCase';
 import { GetActivitiesByMonthPaginatedUseCase } from './GetActivitiesByMonthPaginatedUseCase';
+import { RemoveActivityUseCase } from './RemoveActivityUseCase';
 
 export class ActivityUseCaseFactory {
   static newExpenseUseCase = () => new NewExpenseUseCase({ service: ActivityServiceFactory.newExpenseService() });
@@ -14,4 +15,6 @@ export class ActivityUseCaseFactory {
     new GetActivitiesByMonthUseCase({ service: ActivityServiceFactory.getActivitiesByMonthService() });
   static getActivitiesByMonthPaginatedUseCase = () =>
     new GetActivitiesByMonthPaginatedUseCase({ service: ActivityServiceFactory.getActivitiesByMonthService() });
+  static removeActivityUseCase = () =>
+    new RemoveActivityUseCase({ service: ActivityServiceFactory.removeActivityService() });
 }
