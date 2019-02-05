@@ -14,6 +14,7 @@ export interface IGetActivities {
 
 export interface ActivityRepository {
   newActivity: (args: { activity: Activity }) => Promise<Activity>;
+  getActivity: ({ id: string }) => Promise<Activity>;
   getActivitiesByUserId: ({ userId }: { userId: Activity['userId'] }) => Promise<IGetActivities>;
   getActivitiesByMonth: ({ userId, date }: IGetActivitiesByMonth) => Promise<IGetActivities>;
   removeActivity: ({ id: string }) => Promise<void>;

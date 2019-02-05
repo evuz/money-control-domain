@@ -1,4 +1,4 @@
-import { IService, IUseCase } from 'ts-domain';
+import { IUseCase } from 'ts-domain';
 
 import { INewExpenseUseCase } from './types';
 import { Activity } from '../Entities/Activity';

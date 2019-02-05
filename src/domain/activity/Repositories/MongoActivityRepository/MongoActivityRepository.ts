@@ -2,7 +2,7 @@ import { getRepository, Repository, Between, MoreThan } from 'typeorm';
 
 import { ActivityRepository, IGetActivitiesByMonth } from '../ActivityRepository';
 import { Activity } from './Activity.entity';
-import { startOfMonth, endOfMonth } from 'date-fns';
+import { startOfMonth, endOfMonth, isFirstDayOfMonth } from 'date-fns';
 
 export class MongoActivityRepository implements ActivityRepository {
   private activityRepository: Repository<Activity>;
@@ -15,6 +15,10 @@ export class MongoActivityRepository implements ActivityRepository {
     return this.activityRepository.save(activity);
   }
 
+  getActivity({ id }: { id: number }) {
+    return this.activityRepository.findOne(id);
+  }
+
   async getActivitiesByUserId({ userId }: { userId: Activity['userId'] }) {
     const [results, total] = await this.activityRepository.findAndCount({ where: { userId } });
     return { results, total };
@@ -22,12 +26,13 @@ export class MongoActivityRepository implements ActivityRepository {
 
   async getActivitiesByMonth({ userId, date, take, page }: IGetActivitiesByMonth) {
     const firsDayOfMonth = startOfMonth(date).getTime();
+    console.log(firsDayOfMonth);
     const lastDayOfMonth = endOfMonth(date).getTime();
     const skip = take * page;
     const [results, total] = await this.activityRepository.findAndCount({
       take,
       skip,
-      where: { userId, date: { $gt: firsDayOfMonth, $lt: lastDayOfMonth } },
+      where: { userId, date: { $gte: firsDayOfMonth, $lte: lastDayOfMonth } },
       order: {
         date: 'ASC',
       },
