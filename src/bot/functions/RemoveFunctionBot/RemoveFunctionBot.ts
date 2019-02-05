@@ -75,6 +75,40 @@ export class RemoveFunctionBot extends FunctionBot {
       }
       case CallbackQuery.Remove:
         return getDomain()
+          .get({ useCase: 'get_activity' })
+          .execute({ id: data[CallbackQueryData.Id] })
+          .then(({ amount, concept, date, id }) => {
+            return botFunctions.editMessageText({
+              text: `Expense. \nAmount: ${amount}€. \nConcept: ${concept}. \nDate: ${format(
+                date,
+                'DD MMM YYYY',
+              )}\nIs correct?`,
+              opts: {
+                ...opts,
+                reply_markup: {
+                  inline_keyboard: [
+                    [
+                      {
+                        text: 'Yes',
+                        callback_data: `${CallbackQuery.Key}.${CallbackQuery.Confirm}.${id}`,
+                      },
+                      {
+                        text: 'No',
+                        callback_data: `${CallbackQuery.Key}.${CallbackQuery.Refuse}`,
+                      },
+                    ],
+                  ],
+                },
+              },
+            });
+          });
+      case CallbackQuery.Refuse:
+        return botFunctions.editMessageText({
+          opts,
+          text: 'Operation cancelled',
+        });
+      case CallbackQuery.Confirm:
+        return getDomain()
           .get({ useCase: 'remove_activity' })
           .execute({ id: data[CallbackQueryData.Id] })
           .then(() => {

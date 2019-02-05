@@ -3,6 +3,8 @@ import { Activity } from '../../../domain/activity/Entities/Activity';
 export enum CallbackQuery {
   Key = 'REMOVE_ACTIVITY',
   Remove = 'REMOVE',
+  Confirm = 'CONFIRM',
+  Refuse = 'REFUSE',
   ChangePage = 'CHANGE_PAGE',
   ChangeMonth = 'CHANGE_MONTH',
   Empty = 'EMPTY',
