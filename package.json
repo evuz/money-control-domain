@@ -1,6 +1,6 @@
 {
   "name": "money-control-bot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
     "@types/jest": "^23.3.13",
