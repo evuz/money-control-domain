@@ -4,10 +4,12 @@ import { UsersRepository } from '../UsersRepository';
 import { User } from './User.entity';
 
 export class MongoUsersRepository implements UsersRepository {
-  private userRepository: Repository<User>;
-
-  constructor() {
-    this.userRepository = getRepository(User);
+  private _userRepository: Repository<User>;
+  private get userRepository() {
+    if (!this._userRepository) {
+      this._userRepository = getRepository(User);
+    }
+    return this._userRepository;
   }
 
   getAllUsers() {

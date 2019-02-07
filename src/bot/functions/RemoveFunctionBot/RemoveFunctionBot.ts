@@ -3,7 +3,7 @@ import { format, startOfMonth, addMonths } from 'date-fns';
 
 import { FunctionBot } from '../models/FunctionBot';
 import { ITelegramBotOnText, ICallbackQueryFunction } from '../../types';
-import { getDomain } from '../../../domain';
+import { domain } from '../../../domain';
 import { CallbackQuery, CallbackQueryData, IKeyboard } from './types';
 
 const PAGE_SIZE = 5;
@@ -16,7 +16,7 @@ export class RemoveFunctionBot extends FunctionBot {
     const userId = msg.from.id;
 
     const date = Date.now();
-    getDomain()
+    domain
       .get({ useCase: 'get_activities_by_month_paginated' })
       .execute({ userId, date, take: PAGE_SIZE, page: 0 })
       .then(({ results, total }) => {
@@ -50,7 +50,7 @@ export class RemoveFunctionBot extends FunctionBot {
       case CallbackQuery.ChangePage: {
         const date = +data[CallbackQueryData.Date];
         const page = +data[CallbackQueryData.Id];
-        return getDomain()
+        return domain
           .get({ useCase: 'get_activities_by_month_paginated' })
           .execute({ userId, date, page, take: PAGE_SIZE })
           .then(({ results, total }) => {
@@ -63,7 +63,7 @@ export class RemoveFunctionBot extends FunctionBot {
       case CallbackQuery.ChangeMonth: {
         const date = +data[CallbackQueryData.Id];
         const page = 0;
-        return getDomain()
+        return domain
           .get({ useCase: 'get_activities_by_month_paginated' })
           .execute({ userId, date, page, take: PAGE_SIZE })
           .then(({ results, total }) => {
@@ -74,7 +74,7 @@ export class RemoveFunctionBot extends FunctionBot {
           });
       }
       case CallbackQuery.Remove:
-        return getDomain()
+        return domain
           .get({ useCase: 'get_activity' })
           .execute({ id: data[CallbackQueryData.Id] })
           .then(({ amount, concept, date, id }) => {
@@ -108,7 +108,7 @@ export class RemoveFunctionBot extends FunctionBot {
           text: 'Operation cancelled',
         });
       case CallbackQuery.Confirm:
-        return getDomain()
+        return domain
           .get({ useCase: 'remove_activity' })
           .execute({ id: data[CallbackQueryData.Id] })
           .then(() => {

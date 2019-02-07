@@ -24,6 +24,6 @@ export class StartDatabaseService implements IService {
   }
 
   execute() {
-    return this.repository.start(new Config({ config: this.config }));
+    return this.repository.start({ config: new Config({ config: this.config }) });
   }
 }

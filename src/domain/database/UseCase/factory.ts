@@ -1,4 +1,4 @@
-import { StartDatabaseUseCase } from './StartDatabseUseCase';
+import { StartDatabaseUseCase } from './StartDatabaseUseCase';
 import { DatabaseServiceFactory } from '../Services/factory';
 
 export class DatabaseUseCaseFactory {

@@ -19,7 +19,7 @@ export class MongoDatabaseRepository extends DatabaseRepository {
 
   start = ({ config }: { config: Config }) => {
     const ormConfig = {
-      ...config,
+      ...config.get(),
       ...this.ormConfig,
     };
     return createConnection(ormConfig);
