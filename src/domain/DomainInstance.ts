@@ -2,10 +2,12 @@ import { Domain } from 'ts-domain';
 
 import { UsersUseCaseFactory } from './users/UseCases/factory';
 import { ActivityUseCaseFactory } from './activity/UseCases/factory';
+import { DatabaseUseCaseFactory } from './database/UseCase/factory';
 
 export class DomainInstance {
   static useCases() {
     return {
+      start_database: DatabaseUseCaseFactory.startDatabaseUseCase(),
       get_all_users: UsersUseCaseFactory.getAllUsersUseCase(),
       new_user: UsersUseCaseFactory.newUsersUseCase(),
       new_expense: ActivityUseCaseFactory.newExpenseUseCase(),
