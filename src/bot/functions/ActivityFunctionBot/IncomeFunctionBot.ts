@@ -3,7 +3,7 @@ import { startOfDay, format } from 'date-fns';
 
 import { ITelegramBotOnText, IAddCallbackQuery, ICallbackQueryFunction } from '../../types';
 import { ActivityFunctionBot } from './ActivityFunctionBot';
-import { getDomain } from '../../../domain';
+import { domain } from '../../../domain';
 import { CallbackQuery, CallbackQueryAddActivity } from './types';
 
 export class IncomeFunctionBot extends ActivityFunctionBot {
@@ -71,7 +71,6 @@ export class IncomeFunctionBot extends ActivityFunctionBot {
     if (data[0] === CallbackQueryAddActivity.N) {
       return botFunctions.editMessageText({ opts, text: 'You can introduce a new /income' });
     }
-    const domain = getDomain();
     const { amount, concept, date } = this.getActivity({ userId });
     domain.get({ useCase: 'new_income' }).execute({ activity: { amount, concept, userId, date } });
     return botFunctions.editMessageText({ opts, text: 'Your income have been added' });

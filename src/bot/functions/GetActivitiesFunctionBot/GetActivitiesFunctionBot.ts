@@ -4,7 +4,7 @@ import { format, startOfMonth, addMonths } from 'date-fns';
 import { FunctionBot } from '../models/FunctionBot';
 import { ITelegramBotOnText, IAddCallbackQuery, ICallbackQueryFunction } from '../../types';
 import { CallbackQuery, CallbackQueryDataKeys } from './types';
-import { getDomain } from '../../../domain';
+import { domain } from '../../../domain';
 import { Activity } from '../../../domain/activity/Entities/Activity';
 
 export class GetActivitiesFunctionBot extends FunctionBot {
@@ -14,7 +14,6 @@ export class GetActivitiesFunctionBot extends FunctionBot {
   public execute = ({ msg, botFunctions }: ITelegramBotOnText) => {
     const chatId = msg.chat.id;
     const userId = msg.from.id;
-    const domain = getDomain();
     domain
       .get({ useCase: 'get_activities_by_month' })
       .execute({ userId, date: Date.now() })
@@ -65,9 +64,7 @@ export class GetActivitiesFunctionBot extends FunctionBot {
   };
 
   private editMessage = async ({ date, userId, options }: { date: number; userId: string | number; options: any }) => {
-    const { results: activities } = await getDomain()
-      .get({ useCase: 'get_activities_by_month' })
-      .execute({ userId, date });
+    const { results: activities } = await domain.get({ useCase: 'get_activities_by_month' }).execute({ userId, date });
     const text = this.activitiesToSummary({ activities });
     const opts = { ...options, reply_markup: this.inlineKeyboard({ date }) };
     return { text, opts };
