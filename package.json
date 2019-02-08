@@ -4,6 +4,9 @@
   "description": "Domain to money control",
   "main": "build/index.js",
   "private": true,
+  "files": [
+    "build/**/*"
+  ],
   "devDependencies": {
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.15",
@@ -37,7 +40,6 @@
     "coverage": "jest --coverage",
     "format": "prettier --write 'src/**/*.ts'",
     "lint": "tslint -p tsconfig.json",
-    "postinstall": "npm run build",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"

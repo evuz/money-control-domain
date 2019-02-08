@@ -6,5 +6,6 @@ build/
 tmp/
 temp/
 
+*.tgz
 package-lock.json
 .env
