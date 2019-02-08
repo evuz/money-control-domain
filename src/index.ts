@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 export * from './database/UseCases/factory';
 export * from './database/Entities';
 export * from './users/UseCases/factory';
