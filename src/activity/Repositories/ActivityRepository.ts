@@ -1,7 +1,7 @@
 import { Activity } from '../Entities/Activity';
 
 export interface IGetActivitiesByMonth {
-  userId: Activity['userId'];
+  user: Activity['user'];
   date: number;
   take?: number;
   page?: number;
@@ -15,7 +15,7 @@ export interface IGetActivities {
 export interface ActivityRepository {
   newActivity: (args: { activity: Activity }) => Promise<Activity>;
   getActivity: ({ id: string }) => Promise<Activity>;
-  getActivitiesByUserId: ({ userId }: { userId: Activity['userId'] }) => Promise<IGetActivities>;
-  getActivitiesByMonth: ({ userId, date }: IGetActivitiesByMonth) => Promise<IGetActivities>;
+  getActivities: ({ user }: { user: Activity['user'] }) => Promise<IGetActivities>;
+  getActivitiesByMonth: ({ user, date }: IGetActivitiesByMonth) => Promise<IGetActivities>;
   removeActivity: ({ id: string }) => Promise<void>;
 }

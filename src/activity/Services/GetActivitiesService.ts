@@ -4,14 +4,14 @@ import { ActivityRepository } from '../Repositories/ActivityRepository';
 import { Activity } from '../Entities/Activity';
 import { IGetActivitiesByUserIdService } from './types';
 
-export class GetActivitiesByUserIdService implements IService {
+export class GetActivitiesService implements IService {
   private repository: ActivityRepository;
 
   constructor({ repository }: IGetActivitiesByUserIdService) {
     this.repository = repository;
   }
 
-  execute({ userId }: { userId: Activity['userId'] }) {
-    return this.repository.getActivitiesByUserId({ userId });
+  execute({ user }: { user: Activity['user'] }) {
+    return this.repository.getActivities({ user });
   }
 }

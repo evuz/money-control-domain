@@ -10,7 +10,7 @@ export class GetActivitiesByMonthService implements IService {
     this.repository = repository;
   }
 
-  execute({ userId, date, take, page }: IGetActivitiesByMonth) {
-    return this.repository.getActivitiesByMonth({ userId, date, take, page });
+  execute({ user, date, take, page }: IGetActivitiesByMonth) {
+    return this.repository.getActivitiesByMonth({ user, date, take, page });
   }
 }

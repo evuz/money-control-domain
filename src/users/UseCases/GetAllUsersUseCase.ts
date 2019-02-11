@@ -1,9 +1,10 @@
-import { IUseCase, IService } from 'ts-domain';
+import { IUseCase } from 'ts-domain';
 
 import { IGetAllUsersUseCase } from './types';
+import { GetAllUsersService } from '../Services/GetAllUsersService';
 
 export class GetAllUsersUseCase implements IUseCase {
-  private service: IService;
+  private service: GetAllUsersService;
 
   constructor({ service }: IGetAllUsersUseCase) {
     this.service = service;

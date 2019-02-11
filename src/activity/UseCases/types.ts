@@ -1,5 +1,5 @@
 import { NewExpenseService } from '../Services/NewExpenseService';
-import { GetActivitiesByUserIdService } from '../Services/GetActivitiesByUserIdService';
+import { GetActivitiesService } from '../Services/GetActivitiesService';
 import { GetActivitiesByMonthService } from '../Services/GetActivitiesByMonthService';
 import { NewIncomeService } from '../Services/NewIncomeService';
 import { RemoveActivityService } from '../Services/RemoveActivityService';
@@ -15,7 +15,7 @@ export interface IGetActivityUseCase {
   service: GetActivityService;
 }
 export interface IGetActivitiesByUserIdUseCase {
-  service: GetActivitiesByUserIdService;
+  service: GetActivitiesService;
 }
 export interface IGetActivitiesByMonthUseCase {
   service: GetActivitiesByMonthService;

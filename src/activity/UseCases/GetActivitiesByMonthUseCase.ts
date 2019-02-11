@@ -11,7 +11,7 @@ export class GetActivitiesByMonthUseCase implements IUseCase {
     this.service = service;
   }
 
-  execute({ userId, date }: IGetActivitiesByMonth) {
-    return this.service.execute({ userId, date });
+  execute({ user, date }: IGetActivitiesByMonth) {
+    return this.service.execute({ user, date });
   }
 }

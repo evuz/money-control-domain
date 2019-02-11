@@ -11,7 +11,7 @@ export class GetActivitiesByMonthPaginatedUseCase implements IUseCase {
     this.service = service;
   }
 
-  execute({ userId, date, take, page }: Required<IGetActivitiesByMonth>) {
-    return this.service.execute({ userId, date, take, page });
+  execute({ user, date, take, page }: Required<IGetActivitiesByMonth>) {
+    return this.service.execute({ user, date, take, page });
   }
 }

@@ -5,11 +5,17 @@ import { User as UserEntity } from '../../Entities/User';
 export class User extends UserEntity {
   @ObjectIdColumn()
   private _id?: ObjectID;
+
   @Column()
   @Index({ unique: true })
-  userId: number;
+  telegramId: string;
+
   @Column()
-  firstName: string;
+  firstname: string;
+
+  @Column()
+  lastname: string;
+
   @Column()
   username?: string;
 

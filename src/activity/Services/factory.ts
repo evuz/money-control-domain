@@ -1,7 +1,7 @@
 import { NewExpenseService } from './NewExpenseService';
 import { NewIncomeService } from './NewIncomeService';
 import { ActivityRepositoryFactory } from '../Repositories/factory';
-import { GetActivitiesByUserIdService } from './GetActivitiesByUserIdService';
+import { GetActivitiesService } from './GetActivitiesService';
 import { GetActivitiesByMonthService } from './GetActivitiesByMonthService';
 import { RemoveActivityService } from './RemoveActivityService';
 import { GetActivityService } from './GetActivityService';
@@ -13,8 +13,8 @@ export class ActivityServiceFactory {
     new NewIncomeService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
   static getActivityService = () =>
     new GetActivityService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
-  static getActivitiesByUserIdService = () =>
-    new GetActivitiesByUserIdService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
+  static getActivitiesService = () =>
+    new GetActivitiesService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
   static getActivitiesByMonthService = () =>
     new GetActivitiesByMonthService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
   static removeActivityService = () =>

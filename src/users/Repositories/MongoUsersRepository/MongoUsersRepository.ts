@@ -19,4 +19,8 @@ export class MongoUsersRepository implements UsersRepository {
   newUser({ user }: { user: User }) {
     return this.userRepository.save(user);
   }
+
+  getUserByTelegramId({ telegramId }: { telegramId: string }) {
+    return this.userRepository.findOne(null, { where: { telegramId } });
+  }
 }
