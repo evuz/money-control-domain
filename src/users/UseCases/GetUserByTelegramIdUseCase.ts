@@ -3,7 +3,7 @@ import { IUseCase } from 'ts-domain';
 import { IGetUserByTelegramIdUseCase } from './types';
 import { GetUserByTelegramIdService } from '../Services/GetUserByTelegramIdService';
 
-export class GetAllUsersUseCase implements IUseCase {
+export class GetUserByTelegramIdUseCase implements IUseCase {
   private service: GetUserByTelegramIdService;
 
   constructor({ service }: IGetUserByTelegramIdUseCase) {
