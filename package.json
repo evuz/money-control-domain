@@ -1,6 +1,6 @@
 {
   "name": "money-control-domain",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Domain to money control",
   "main": "build/index.js",
   "private": true,
