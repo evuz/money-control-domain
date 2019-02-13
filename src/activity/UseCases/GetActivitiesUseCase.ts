@@ -1,13 +1,13 @@
 import { IUseCase } from 'ts-domain';
 
-import { IGetActivitiesByUserIdUseCase } from './types';
+import { IGetActivitiesUseCase } from './types';
 import { Activity } from '../Entities/Activity';
 import { GetActivitiesService } from '../Services/GetActivitiesService';
 
-export class GetActivitiesByUserIdUseCase implements IUseCase {
+export class GetActivitiesUseCase implements IUseCase {
   private service: GetActivitiesService;
 
-  constructor({ service }: IGetActivitiesByUserIdUseCase) {
+  constructor({ service }: IGetActivitiesUseCase) {
     this.service = service;
   }
 

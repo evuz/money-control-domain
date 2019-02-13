@@ -1,7 +1,7 @@
 import { IUseCase } from 'ts-domain';
 
 import { IGetActivitiesByMonthUseCase } from './types';
-import { IGetActivitiesByMonth, IGetActivities } from '../Repositories/ActivityRepository';
+import { IGetActivitiesByMonth } from '../Repositories/ActivityRepository';
 import { GetActivitiesByMonthService } from '../Services/GetActivitiesByMonthService';
 
 export class GetActivitiesByMonthUseCase implements IUseCase {

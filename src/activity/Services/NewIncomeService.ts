@@ -1,21 +1,21 @@
 import { IService } from 'ts-domain';
 
 import { ActivityRepository } from '../Repositories/ActivityRepository';
-import { Activity } from '../Entities/Activity';
-import { INewExpenseService } from './types';
+import { ActivityWithoutId, Activity } from '../Entities/Activity';
+import { INewIncomeService } from './types';
 
 export class NewIncomeService implements IService {
   private repository: ActivityRepository;
 
-  constructor({ repository }: INewExpenseService) {
+  constructor({ repository }: INewIncomeService) {
     this.repository = repository;
   }
 
-  execute({ activity: { amount, ...rest } }: { activity: Activity }) {
+  execute({ activity: { amount, ...rest } }: { activity: ActivityWithoutId }) {
     const activity = {
       ...rest,
       amount: amount > 0 ? amount : -amount,
     };
-    return this.repository.newActivity({ activity });
+    return this.repository.newActivity({ activity: new Activity(activity) });
   }
 }

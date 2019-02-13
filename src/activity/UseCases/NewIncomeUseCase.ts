@@ -1,7 +1,7 @@
 import { IUseCase } from 'ts-domain';
 
 import { INewIncomeUseCase } from './types';
-import { Activity } from '../Entities/Activity';
+import { ActivityWithoutId } from '../Entities/Activity';
 import { NewIncomeService } from '../Services/NewIncomeService';
 
 export class NewIncomeUseCase implements IUseCase {
@@ -11,7 +11,7 @@ export class NewIncomeUseCase implements IUseCase {
     this.service = service;
   }
 
-  execute({ activity }: { activity: Activity }) {
+  execute({ activity }: { activity: ActivityWithoutId }) {
     return this.service.execute({ activity });
   }
 }

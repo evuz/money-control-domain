@@ -1,7 +1,7 @@
 import { IService, IUseCase } from 'ts-domain';
 
 import { INewUserUseCase } from './types';
-import { User } from '../Entities/User';
+import { UserWithoutId } from '../Entities/User';
 
 export class NewUserUseCase implements IUseCase {
   private service: IService;
@@ -10,7 +10,7 @@ export class NewUserUseCase implements IUseCase {
     this.service = service;
   }
 
-  execute({ user }: { user: User }) {
+  execute({ user }: { user: UserWithoutId }) {
     return this.service.execute({ user });
   }
 }

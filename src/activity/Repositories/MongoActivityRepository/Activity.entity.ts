@@ -17,10 +17,13 @@ export class Activity extends ActivityEntity {
   amount: number;
 
   @Column()
-  date?: number;
+  date: number;
 
   get id() {
     return this._id.toString();
+  }
+  set id(value: any) {
+    this._id = value;
   }
 
   constructor(activity: Activity = <any>{}) {

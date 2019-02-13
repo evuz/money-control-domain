@@ -1,7 +1,7 @@
 import { IService } from 'ts-domain';
 
 import { ActivityRepository } from '../Repositories/ActivityRepository';
-import { Activity } from '../Entities/Activity';
+import { ActivityWithoutId, Activity } from '../Entities/Activity';
 import { INewExpenseService } from './types';
 
 export class NewExpenseService implements IService {
@@ -11,11 +11,11 @@ export class NewExpenseService implements IService {
     this.repository = repository;
   }
 
-  execute({ activity: { amount, ...rest } }: { activity: Activity }) {
+  execute({ activity: { amount, ...rest } }: { activity: ActivityWithoutId }) {
     const activity = {
       ...rest,
       amount: amount > 0 ? -amount : amount,
     };
-    return this.repository.newActivity({ activity });
+    return this.repository.newActivity({ activity: new Activity(activity) });
   }
 }
