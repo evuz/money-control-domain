@@ -21,6 +21,6 @@ export class MongoUsersRepository implements UsersRepository {
   }
 
   getUserByTelegramId({ telegramId }: { telegramId: string }) {
-    return this.userRepository.findOne(null, { where: { telegramId } });
+    return this.userRepository.findOneOrFail({ where: { telegramId } });
   }
 }
