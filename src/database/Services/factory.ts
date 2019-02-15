@@ -1,8 +1,8 @@
 import { StartDatabaseService } from './StartDatabaseService';
-import { DatabaseRepositoryFactory } from '../Repositories/factory';
 import { IFactory } from '../../helpers/types';
+import { repositorySelector } from '../../RepositorySelector';
 
 export class DatabaseServiceFactory {
   static startDatabaseService = ({ config }: IFactory) =>
-    new StartDatabaseService({ repository: DatabaseRepositoryFactory.mongoDatabaseRepository({ config }) });
+    new StartDatabaseService({ repository: repositorySelector.database({ config }) });
 }
