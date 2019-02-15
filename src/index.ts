@@ -6,3 +6,4 @@ export * from './users/UseCases/factory';
 export * from './users/Entities';
 export * from './activity/UseCases/factory';
 export * from './activity/Entities';
+export * from './RepositorySelector';
