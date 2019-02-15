@@ -10,38 +10,39 @@ import { UsersServiceFactory } from '../../users/Services/factory';
 import { NewIncomeByTelegramIdService } from './NewIncomeByTelegramIdService';
 import { GetActivitiesByTelegramIdService } from './GetActivitiesByTelegramIdService';
 import { GetActivitiesByTelegramIdMonthService } from './GetActivitiesByTelegramIdMonthService';
+import { IFactory } from '../../helpers/types';
 
 export class ActivityServiceFactory {
-  static newExpenseService = () =>
-    new NewExpenseService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
-  static newExpenseByTelegramIdService = () =>
+  static newExpenseService = ({ config }: IFactory) =>
+    new NewExpenseService({ repository: ActivityRepositoryFactory.mongoActivityRepository({ config }) });
+  static newExpenseByTelegramIdService = ({ config }: IFactory) =>
     new NewExpenseByTelegramIdService({
-      service: ActivityServiceFactory.newExpenseService(),
-      userService: UsersServiceFactory.getUserByTelegramIdService(),
+      service: ActivityServiceFactory.newExpenseService({ config }),
+      userService: UsersServiceFactory.getUserByTelegramIdService({ config }),
     });
-  static newIncomeService = () =>
-    new NewIncomeService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
-  static newIncomeByTelegramIdService = () =>
+  static newIncomeService = ({ config }: IFactory) =>
+    new NewIncomeService({ repository: ActivityRepositoryFactory.mongoActivityRepository({ config }) });
+  static newIncomeByTelegramIdService = ({ config }: IFactory) =>
     new NewIncomeByTelegramIdService({
-      service: ActivityServiceFactory.newIncomeService(),
-      userService: UsersServiceFactory.getUserByTelegramIdService(),
+      service: ActivityServiceFactory.newIncomeService({ config }),
+      userService: UsersServiceFactory.getUserByTelegramIdService({ config }),
     });
-  static getActivityService = () =>
-    new GetActivityService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
-  static getActivitiesService = () =>
-    new GetActivitiesService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
-  static getActivitiesByTelegramIdService = () =>
+  static getActivityService = ({ config }: IFactory) =>
+    new GetActivityService({ repository: ActivityRepositoryFactory.mongoActivityRepository({ config }) });
+  static getActivitiesService = ({ config }: IFactory) =>
+    new GetActivitiesService({ repository: ActivityRepositoryFactory.mongoActivityRepository({ config }) });
+  static getActivitiesByTelegramIdService = ({ config }: IFactory) =>
     new GetActivitiesByTelegramIdService({
-      service: ActivityServiceFactory.getActivitiesService(),
-      userService: UsersServiceFactory.getUserByTelegramIdService(),
+      service: ActivityServiceFactory.getActivitiesService({ config }),
+      userService: UsersServiceFactory.getUserByTelegramIdService({ config }),
     });
-  static getActivitiesByMonthService = () =>
-    new GetActivitiesByMonthService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
-  static getActivitiesByTelegramIdMonthService = () =>
+  static getActivitiesByMonthService = ({ config }: IFactory) =>
+    new GetActivitiesByMonthService({ repository: ActivityRepositoryFactory.mongoActivityRepository({ config }) });
+  static getActivitiesByTelegramIdMonthService = ({ config }: IFactory) =>
     new GetActivitiesByTelegramIdMonthService({
-      service: ActivityServiceFactory.getActivitiesByMonthService(),
-      userService: UsersServiceFactory.getUserByTelegramIdService(),
+      service: ActivityServiceFactory.getActivitiesByMonthService({ config }),
+      userService: UsersServiceFactory.getUserByTelegramIdService({ config }),
     });
-  static removeActivityService = () =>
-    new RemoveActivityService({ repository: ActivityRepositoryFactory.mongoActivityRepository() });
+  static removeActivityService = ({ config }: IFactory) =>
+    new RemoveActivityService({ repository: ActivityRepositoryFactory.mongoActivityRepository({ config }) });
 }
