@@ -5,12 +5,12 @@ import { Activity } from '../Entities/Activity';
 export class ApiActivityRepository extends ApiRepository implements ActivityRepository {
   newActivity({ activity }: { activity: Activity }) {
     const activityType = activity.amount > 0 ? 'income' : 'expense';
-    const endpoint = `activity/${activityType}`;
+    const endpoint = `/activity/${activityType}`;
     return this.http.post(endpoint, activity).then(res => res.data);
   }
 
   getActivity({ id }: { id: number }) {
-    return this.http.get(`activity/${id}`).then(res => res.data);
+    return this.http.get(`/activity/${id}`).then(res => res.data);
   }
 
   getActivities({  }: { user: Activity['user'] }): any {
@@ -29,6 +29,6 @@ export class ApiActivityRepository extends ApiRepository implements ActivityRepo
   }
 
   removeActivity({ id }: { id: string }): Promise<any> {
-    return this.http.delete(`activity/${id}`);
+    return this.http.delete(`/activity/${id}`);
   }
 }
