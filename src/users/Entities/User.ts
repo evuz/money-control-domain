@@ -1,16 +1,27 @@
-export type UserWithoutId = Pick<User, Exclude<keyof User, 'id'>> & Partial<Pick<User, 'id'>>;
-export class User {
+import { Entity, property } from 'ts-domain';
+
+export type UserWithoutId = Pick<User, Exclude<keyof User, 'id'>>;
+export interface User {
   id: string;
   firstname: string;
   telegramId?: string;
   lastname?: string;
   username?: string;
+}
 
-  constructor({ firstname, lastname, username, telegramId, id }: UserWithoutId) {
-    this.telegramId = telegramId;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.username = username;
-    this.id = id;
+export class UserEntity extends Entity<User> {
+  @property()
+  id: string;
+  @property()
+  firstname: string;
+  @property()
+  telegramId?: string;
+  @property()
+  lastname?: string;
+  @property()
+  username?: string;
+
+  constructor(props: UserWithoutId | User) {
+    super(props);
   }
 }

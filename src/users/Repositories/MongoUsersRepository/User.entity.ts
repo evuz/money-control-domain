@@ -1,5 +1,5 @@
 import { Entity, ObjectIdColumn, ObjectID, Column, Index } from 'typeorm';
-import { User as UserEntity } from '../../Entities/User';
+import { UserEntity } from '../../Entities/User';
 
 @Entity()
 export class User extends UserEntity {
@@ -24,9 +24,5 @@ export class User extends UserEntity {
   }
   set id(value: any) {
     this._id = value;
-  }
-
-  constructor(user: User = <any>{}) {
-    super(user);
   }
 }

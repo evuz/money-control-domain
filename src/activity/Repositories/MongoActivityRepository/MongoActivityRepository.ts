@@ -2,8 +2,8 @@ import { getRepository, Repository } from 'typeorm';
 import { startOfMonth, endOfMonth } from 'date-fns';
 
 import { ActivityRepository, IGetActivitiesByMonth } from '../ActivityRepository';
+import { ActivityEntity } from '../../Entities/Activity';
 import { Activity } from './Activity.entity';
-import { Activity as ActivityEntity } from '../../Entities/Activity';
 
 export class MongoActivityRepository implements ActivityRepository {
   private _activityRepository: Repository<Activity>;
@@ -14,17 +14,17 @@ export class MongoActivityRepository implements ActivityRepository {
     return this._activityRepository;
   }
 
-  newActivity({ activity }: { activity: Activity }) {
-    return this.activityRepository.save(activity).then(this.flatActivity);
+  newActivity({ activity }: { activity: ActivityEntity }) {
+    return this.activityRepository.save(new Activity(activity.flat())).then(a => new ActivityEntity(a.flat()));
   }
 
   getActivity({ id }: { id: number }) {
-    return this.activityRepository.findOne(id).then(this.flatActivity);
+    return this.activityRepository.findOne(id).then(activity => new ActivityEntity(activity.flat()));
   }
 
   async getActivities({ user }: { user: Activity['user'] }) {
     const [activities, total] = await this.activityRepository.findAndCount({ where: { user } });
-    const results = activities.map(this.flatActivity);
+    const results = activities.map(activity => new ActivityEntity(activity.flat()));
     return { results, total };
   }
 
@@ -40,21 +40,11 @@ export class MongoActivityRepository implements ActivityRepository {
         date: 'ASC',
       },
     });
-    const results = activities.map(this.flatActivity);
+    const results = activities.map(activity => new ActivityEntity(activity.flat()));
     return { results, total };
   }
 
   removeActivity({ id }: { id: string }): Promise<any> {
     return this.activityRepository.delete(id);
-  }
-
-  private flatActivity(activity: Activity): ActivityEntity {
-    return {
-      id: activity.id,
-      concept: activity.concept,
-      amount: activity.amount,
-      user: activity.user,
-      date: activity.date,
-    };
   }
 }

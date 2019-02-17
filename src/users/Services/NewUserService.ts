@@ -2,7 +2,7 @@ import { IService } from 'ts-domain';
 
 import { UsersRepository } from '../Repositories/UsersRepository';
 import { INewUserService } from './types';
-import { User, UserWithoutId } from '../Entities/User';
+import { UserEntity, User, UserWithoutId } from '../Entities/User';
 
 export class NewUserService implements IService {
   private repository: UsersRepository;
@@ -11,7 +11,7 @@ export class NewUserService implements IService {
     this.repository = repository;
   }
 
-  execute({ user }: { user: UserWithoutId }) {
-    return this.repository.newUser({ user: new User(user) });
+  execute({ user }: { user: UserWithoutId }): Promise<User> {
+    return this.repository.newUser({ user: new UserEntity(user) }).then(u => u.flat());
   }
 }

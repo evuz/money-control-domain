@@ -3844,9 +3844,9 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
-ts-domain@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/ts-domain/-/ts-domain-1.3.0.tgz#89256836cd35286fb0eefe43252acc93131a0b97"
+ts-domain@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ts-domain/-/ts-domain-1.4.0.tgz#a369d6bc166acf71ba8726773c74b1f0432e4d57"
   dependencies:
     chalk "^2.4.1"
     change-case "^3.0.2"

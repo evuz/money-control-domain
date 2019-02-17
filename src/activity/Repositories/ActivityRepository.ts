@@ -1,4 +1,4 @@
-import { Activity } from '../Entities/Activity';
+import { ActivityEntity as Activity } from '../Entities/Activity';
 
 export interface IGetActivitiesByMonth {
   user: Activity['user'];

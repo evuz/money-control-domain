@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
 
 import { UsersRepository } from '../UsersRepository';
+import { UserEntity } from '../../Entities/User';
 import { User } from './User.entity';
-import { User as UserEntity } from '../../Entities/User';
 
 export class MongoUsersRepository implements UsersRepository {
   private _userRepository: Repository<User>;
@@ -15,25 +15,21 @@ export class MongoUsersRepository implements UsersRepository {
 
   getAllUsers() {
     return this.userRepository.find().then(users => {
-      return users.map(this.flatUser);
+      return users.map(user => new UserEntity(user.flat()));
     });
   }
 
-  newUser({ user }: { user: User }) {
-    return this.userRepository.save(user).then(this.flatUser);
+  newUser({ user }: { user: UserEntity }) {
+    return this.userRepository.save(new User(user.flat())).then(u => new UserEntity(u.flat()));
   }
 
   getUserByTelegramId({ telegramId }: { telegramId: string }) {
-    return this.userRepository.findOneOrFail({ where: { telegramId } }).then(this.flatUser);
-  }
-
-  private flatUser(user: User): UserEntity {
-    return {
-      id: user.id,
-      firstname: user.firstname,
-      telegramId: user.telegramId,
-      lastname: user.lastname,
-      username: user.username,
-    };
+    console.log(telegramId);
+    return this.userRepository.findOneOrFail({ where: { telegramId } }).then(user => {
+      console.log(user);
+      const r = new UserEntity(user.flat());
+      console.log(r);
+      return r;
+    });
   }
 }

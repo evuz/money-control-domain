@@ -1,16 +1,27 @@
-export type ActivityWithoutId = Pick<Activity, Exclude<keyof Activity, 'id'>> & Partial<Pick<Activity, 'id'>>;
-export class Activity {
+import { Entity, property } from 'ts-domain';
+
+export type ActivityWithoutId = Pick<Activity, Exclude<keyof Activity, 'id'>>;
+export interface Activity {
   id: string;
   concept: string;
   amount: number;
   user: string;
   date: number;
+}
 
-  constructor({ concept, amount, date, user, id }: ActivityWithoutId) {
-    this.user = user;
-    this.concept = concept;
-    this.amount = amount;
-    this.date = date;
-    this.id = id;
+export class ActivityEntity extends Entity<Activity> {
+  @property()
+  id: string;
+  @property()
+  concept: string;
+  @property()
+  amount: number;
+  @property()
+  user: string;
+  @property()
+  date: number;
+
+  constructor(props: ActivityWithoutId | Activity) {
+    super(props);
   }
 }

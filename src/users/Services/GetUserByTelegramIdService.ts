@@ -2,6 +2,7 @@ import { IService } from 'ts-domain';
 
 import { UsersRepository } from '../Repositories/UsersRepository';
 import { IGetAllUsersService } from './types';
+import { User } from '../Entities';
 
 export class GetUserByTelegramIdService implements IService {
   private repository: UsersRepository;
@@ -10,7 +11,7 @@ export class GetUserByTelegramIdService implements IService {
     this.repository = repository;
   }
 
-  execute({ telegramId }: { telegramId: string }) {
-    return this.repository.getUserByTelegramId({ telegramId });
+  execute({ telegramId }: { telegramId: string }): Promise<User> {
+    return this.repository.getUserByTelegramId({ telegramId }).then(user => user.flat());
   }
 }

@@ -1,7 +1,7 @@
 import { IService } from 'ts-domain';
 
 import { ActivityRepository } from '../Repositories/ActivityRepository';
-import { ActivityWithoutId, Activity } from '../Entities/Activity';
+import { ActivityWithoutId, ActivityEntity } from '../Entities/Activity';
 import { INewExpenseService } from './types';
 
 export class NewExpenseService implements IService {
@@ -16,6 +16,6 @@ export class NewExpenseService implements IService {
       ...rest,
       amount: amount > 0 ? -amount : amount,
     };
-    return this.repository.newActivity({ activity: new Activity(activity) });
+    return this.repository.newActivity({ activity: new ActivityEntity(activity) });
   }
 }

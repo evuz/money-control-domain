@@ -1,6 +1,6 @@
 import { UsersRepository } from './UsersRepository';
 import { ApiRepository } from '../../helpers/ApiRepository';
-import { User } from '../Entities/User';
+import { UserEntity as User } from '../Entities/User';
 
 export class ApiUsersRepository extends ApiRepository implements UsersRepository {
   getAllUsers(): any {
@@ -12,6 +12,6 @@ export class ApiUsersRepository extends ApiRepository implements UsersRepository
   }
 
   getUserByTelegramId({ telegramId }: { telegramId: string }) {
-    return this.http.get(`/user/telegram/${telegramId}`).then(res => res.data);
+    return this.http.get(`/user/telegram/${telegramId}`).then(res => new User(res.data));
   }
 }
