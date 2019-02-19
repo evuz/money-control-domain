@@ -11,6 +11,6 @@ export class GetActivityService implements IService {
   }
 
   execute({ id }: { id: string }) {
-    return this.repository.getActivity({ id });
+    return this.repository.getActivity({ id }).then(activity => activity.flat());
   }
 }

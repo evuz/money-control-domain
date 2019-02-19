@@ -11,11 +11,11 @@ export class NewExpenseService implements IService {
     this.repository = repository;
   }
 
-  execute({ activity: { amount, ...rest } }: { activity: ActivityWithoutId }) {
+  async execute({ activity: { amount, ...rest } }: { activity: ActivityWithoutId }) {
     const activity = {
       ...rest,
       amount: amount > 0 ? -amount : amount,
     };
-    return this.repository.newActivity({ activity: new ActivityEntity(activity) });
+    return this.repository.newActivity({ activity: new ActivityEntity(activity) }).then(a => a.flat());
   }
 }

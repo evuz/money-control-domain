@@ -11,6 +11,9 @@ export class GetActivitiesByMonthService implements IService {
   }
 
   execute({ user, date, take, page }: IGetActivitiesByMonth) {
-    return this.repository.getActivitiesByMonth({ user, date, take, page });
+    return this.repository.getActivitiesByMonth({ user, date, take, page }).then(({ results, total }) => {
+      const activities = results.map(activity => activity.flat());
+      return { total, results: activities };
+    });
   }
 }

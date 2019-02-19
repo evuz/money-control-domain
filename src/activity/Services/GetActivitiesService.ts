@@ -12,6 +12,9 @@ export class GetActivitiesService implements IService {
   }
 
   execute({ user }: { user: Activity['user'] }) {
-    return this.repository.getActivities({ user });
+    return this.repository.getActivities({ user }).then(({ results, total }) => {
+      const activities = results.map(activity => activity.flat());
+      return { total, results: activities };
+    });
   }
 }
