@@ -11,7 +11,7 @@ export class NewUserService implements IService {
     this.repository = repository;
   }
 
-  execute({ user }: { user: UserWithoutId }): Promise<User> {
-    return this.repository.newUser({ user: new UserEntity(user) }).then(u => u.flat());
+  execute({ user, password }: { user: UserWithoutId; password: string }): Promise<User> {
+    return this.repository.newUser({ password, user: new UserEntity(user) }).then(u => u.flat());
   }
 }

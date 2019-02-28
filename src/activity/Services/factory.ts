@@ -19,14 +19,14 @@ export class ActivityServiceFactory {
   static newExpenseByTelegramIdService = ({ config }: IFactory) =>
     new NewExpenseByTelegramIdService({
       service: ActivityServiceFactory.newExpenseService({ config }),
-      userService: UsersServiceFactory.getUserByTelegramIdService({ config }),
+      userService: UsersServiceFactory.getTelegramUserByTelegramIdService({ config }),
     });
   static newIncomeService = ({ config }: IFactory) =>
     new NewIncomeService({ repository: repositorySelector.activity({ config }) });
   static newIncomeByTelegramIdService = ({ config }: IFactory) =>
     new NewIncomeByTelegramIdService({
       service: ActivityServiceFactory.newIncomeService({ config }),
-      userService: UsersServiceFactory.getUserByTelegramIdService({ config }),
+      userService: UsersServiceFactory.getTelegramUserByTelegramIdService({ config }),
     });
   static getActivityService = ({ config }: IFactory) =>
     new GetActivityService({ repository: repositorySelector.activity({ config }) });
@@ -35,14 +35,14 @@ export class ActivityServiceFactory {
   static getActivitiesByTelegramIdService = ({ config }: IFactory) =>
     new GetActivitiesByTelegramIdService({
       service: ActivityServiceFactory.getActivitiesService({ config }),
-      userService: UsersServiceFactory.getUserByTelegramIdService({ config }),
+      userService: UsersServiceFactory.getTelegramUserByTelegramIdService({ config }),
     });
   static getActivitiesByMonthService = ({ config }: IFactory) =>
     new GetActivitiesByMonthService({ repository: repositorySelector.activity({ config }) });
   static getActivitiesByTelegramIdMonthService = ({ config }: IFactory) =>
     new GetActivitiesByTelegramIdMonthService({
       service: ActivityServiceFactory.getActivitiesByMonthService({ config }),
-      userService: UsersServiceFactory.getUserByTelegramIdService({ config }),
+      userService: UsersServiceFactory.getTelegramUserByTelegramIdService({ config }),
     });
   static removeActivityService = ({ config }: IFactory) =>
     new RemoveActivityService({ repository: repositorySelector.activity({ config }) });

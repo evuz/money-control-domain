@@ -1,5 +1,5 @@
 import { ActivityRepository, IGetActivitiesByMonth } from '../Repositories/ActivityRepository';
-import { GetUserByTelegramIdService } from '../../users/Services/GetUserByTelegramIdService';
+import { GetTelegramUserByTelegramIdService } from '../../users/Services/GetTelegramUserByTelegramIdService';
 import { NewExpenseService } from './NewExpenseService';
 import { NewIncomeService } from './NewIncomeService';
 import { GetActivitiesService } from './GetActivitiesService';
@@ -17,7 +17,7 @@ export interface IGetActivitiesByMonthService extends IActivityService {}
 export interface IRemoveActivityService extends IActivityService {}
 
 export interface IActivityByTelegramIdService {
-  userService: GetUserByTelegramIdService;
+  userService: GetTelegramUserByTelegramIdService;
 }
 export interface INewExpenseByTelegramIdService extends IActivityByTelegramIdService {
   service: NewExpenseService;

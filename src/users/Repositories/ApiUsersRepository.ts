@@ -1,17 +1,36 @@
 import { UsersRepository } from './UsersRepository';
 import { ApiRepository } from '../../helpers/ApiRepository';
-import { UserEntity as User } from '../Entities/User';
 
 export class ApiUsersRepository extends ApiRepository implements UsersRepository {
-  getAllUsers(): any {
-    throw Error('ApiUserRepository#getAllUsers not implemented');
+  newTelegramUser(): any {
+    throw Error('Not implemented yet');
   }
 
-  newUser({  }: { user: User }): any {
-    throw Error('ApiUserRepository#newUser not implemented');
+  newTelegramBotUser(): any {
+    throw Error('Not implemented yet');
   }
 
-  getUserByTelegramId({ telegramId }: { telegramId: string }) {
-    return this.http.get(`/user/telegram/${telegramId}`).then(res => new User(res.data));
+  newUser(): any {
+    throw Error('Not implemented yet');
+  }
+
+  getTelegramUserByTelegramId(): any {
+    throw Error('Not implemented yet');
+  }
+
+  getTelegramUser(): any {
+    throw Error('Not implemented yet');
+  }
+
+  getUser(): any {
+    throw Error('Not implemented yet');
+  }
+
+  loginUser(): any {
+    throw Error('Not implemented yet');
+  }
+
+  loginTelegramBotUser(): any {
+    throw Error('Not implemented yet');
   }
 }

@@ -1,11 +1,11 @@
 import { Entity, ObjectIdColumn, ObjectID, Column, Index } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
-import { UserEntity } from '../../Entities/User';
+import { TelegramBotUserEntity } from '../../Entities/TelegramBotUser';
 import { UserRol } from '../../Entities/types';
 
 @Entity()
-export class User extends UserEntity {
+export class TelegramBotUser extends TelegramBotUserEntity {
   @ObjectIdColumn()
   private _id: ObjectID;
 
@@ -14,17 +14,7 @@ export class User extends UserEntity {
   username: string;
 
   @Column()
-  @Index({ unique: true })
-  email: string;
-
-  @Column()
   rol: UserRol;
-
-  @Column()
-  firstname: string;
-
-  @Column()
-  lastname: string;
 
   @Column()
   password: string;
@@ -37,10 +27,8 @@ export class User extends UserEntity {
   }
 
   async createHash({ password }: { password: string }) {
-    console.log(password);
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(password, salt);
-    console.log(this.password);
     return Promise.resolve();
   }
 
